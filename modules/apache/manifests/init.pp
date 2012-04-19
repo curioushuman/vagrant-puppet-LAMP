@@ -11,7 +11,7 @@ class apache {
     require => Package['apache2'],
     subscribe => [
       File["/etc/apache2/mods-enabled/rewrite.load"],
-      File["/etc/apache2/sites-available/default"],
+      File["/etc/apache2/sites-enabled/default"],
       File["/etc/apache2/conf.d/phpmyadmin.conf"]
     ],
   }
@@ -23,7 +23,7 @@ class apache {
     require => Package['apache2'],
   }
 
-  file { "/etc/apache2/sites-available/default":
+  file { "/etc/apache2/sites-enabled/default":
     ensure => present,
     source => "/vagrant/manifests/default",
     require => Package['apache2'],
